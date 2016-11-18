@@ -33,33 +33,6 @@ void OutputBoard()
 	}
 }
 
-bool AskYesNo(string message)
-{
-	char input;
-	MaddoLib::Output(message + " (S/N): ");
-	cin >> input;
-	MaddoLib::OutputLine(to_string(input));
-	while (input != 'S' || input != 'N' || input != 's' || input != 'n')
-	{
-		MaddoLib::Output("Inserire S (si) o N (no): ");
-		cin >> input;
-		MaddoLib::OutputLine(to_string(input));
-	}
-
-	if (input == 'S' || input == 's')
-	{
-		return true;
-	}
-	else if (input == 'N' || input == 'n')
-	{
-		return false;
-	}
-	else
-	{
-		throw std::exception(); // non deve accadere
-	}
-}
-
 int GetRowColumnNumber()
 {
 	int value;
@@ -100,7 +73,7 @@ char GetPlayerCharacter()
 		{
 			isValid = true;
 			playerCharacter = input[0];
-			MaddoLib::OutputLine("Il carattere selezionato è: " + input.substr(0,1)); // devo fare così perché altrimenti mi manda in output il valore numerico oppure si corrompe il buffer
+			MaddoLib::OutputLine("Il carattere selezionato è: " + playerCharacter /*input.substr(0,1)*/); // devo fare così perché altrimenti mi manda in output il valore numerico oppure si corrompe il buffer
 		}
 		else
 		{
@@ -112,15 +85,13 @@ char GetPlayerCharacter()
 	return playerCharacter;
 }
 
-int main()
+
+
+void Game()
 {
 	char playerCharacter = GetPlayerCharacter();
 	
 	MaddoLib::OutputLine("Ayy Lmao " + playerCharacter);
-
-	return 0;
-
-
 
 	/*OutputBoard();
 
@@ -143,3 +114,12 @@ int main()
 	return 0;*/
 }
 
+int main()
+{
+	bool exit = false;
+	while (!exit) {
+		Game();
+		exit = MaddoLib::AskYesNo("\nUscire dal programma?");
+	}
+	return 0;
+}
