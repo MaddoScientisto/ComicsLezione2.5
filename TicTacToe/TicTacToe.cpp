@@ -8,7 +8,9 @@
 #include <fcntl.h>
 #include <math.h>
 #include <time.h>
-#include "MaddoLib.h";
+#include <stdlib.h>
+#include <stdio.h>
+#include "MaddoLib.h"
 
 using namespace std;
 using namespace Maddo;

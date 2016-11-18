@@ -2,6 +2,8 @@
 #include "MaddoLib.h"
 #include <string>
 #include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
 
 using namespace std;
 
