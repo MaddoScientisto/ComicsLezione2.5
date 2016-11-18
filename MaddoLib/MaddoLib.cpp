@@ -25,6 +25,27 @@ namespace Maddo {
 		OutputLine("");
 		return input;
 	}
+	int MaddoLib::InputInt(string description, string notCorrect) {
+		bool isValid = false;
+		string input;
+		int value;
+		while (!isValid)
+		{
+			
+
+			input = MaddoLib::Input(description);
+			if (MaddoLib::isInteger(input)) {
+				value = MaddoLib::toInt(input);
+
+				if (value >= 0 && value <= 4)
+				{
+					isValid = true;
+				}
+			}
+		}
+
+		return value;
+	}
 	bool MaddoLib::isInteger(const std::string & s)
 	{
 		if (s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+'))) return false;
