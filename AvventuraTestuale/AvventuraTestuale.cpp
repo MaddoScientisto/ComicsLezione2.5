@@ -9,20 +9,11 @@
 using namespace std;
 using namespace Maddo;
 
-
-enum GameStatus {
-	INTRO, STAGE, SELECTION,
-};
-
 class ChoicesDefinitions
 {
 public:
 	string Choices[4];
-	//ChoicesDefinitions(string choice1, string choice2, string choice3, string choice4);
-	ChoicesDefinitions()
-	{
-
-	};
+	ChoicesDefinitions() { };
 	ChoicesDefinitions(string choice1, string choice2, string choice3, string choice4);
 };
 
@@ -80,7 +71,30 @@ StagesContainer Init() {
 	container.stages[2] = Stage(3, "Le 6", "Sono le 6, è l'ora del soffi teir.",
 		ChoicesDefinitions("Non ho capito", "Entra nel calendario", "Spara le pistole ai pallini", "Palla i pistini alle pallole"), 1);
 
-	container.stages[3] = Stage(4, "Calendario", "Entri nel calendario e ti ritrovi all'interno di marzo, fuoriesci nel castello di prima ma nel passato.", ChoicesDefinitions("Sali le scale", "Scendi le scale", "Entra in cucina", "Chiedi al maggiordomo"), 3);
+	container.stages[3] = Stage(4, "Calendario", "Entri nel calendario e ti ritrovi all'interno di marzo, fuoriesci nel castello di prima ma nel passato.",
+		ChoicesDefinitions("Sali le scale", "Scendi le scale", "Entra in cucina", "Chiedi al maggiordomo"), 3);
+
+	container.stages[4] = Stage(5, "Il Maggiordomo", "Entri nel maggiordomo. Il suo nome è Battista. \nCosa fai?.",
+		ChoicesDefinitions("Sali le scale", "Scendi nello stomaco", "Entra nel pancreas", "Osserva la cistifellea"), 3);
+
+	container.stages[5] = Stage(6, "La Cistifellea del maggiordomo", "In realtà la cistifellea del maggiordomo era un portale per una dimensione perpendicolare.",
+		ChoicesDefinitions("Sali le scale", "Scendi dal letto", "Entra in crisi", "Chiedi al maggiordomo"), 1);
+
+
+	container.stages[6] = Stage(7, "La tua camera", "Ti svegli da un brutto sogno.",
+		ChoicesDefinitions("Sali le scale", "Fai colazione", "Entra in cucina", "Chiedi al maggiordomo"), 0);
+
+
+	container.stages[7] = Stage(8, "Il boss finale", "Ti si para davanti il boss finale: Il mega presidente Trumpinator 9000.\nCosa fai?",
+		ChoicesDefinitions("Chiedi le scale", "Attacca il punto debole", "Genuflettiti", "Sali il maggiordomo"), 1);
+
+
+	container.stages[8] = Stage(9, "Il boss finale Round 2", "Mega presidente Trumpinator 9000 ha coperto il suo punto debole.",
+		ChoicesDefinitions("Sali sul boss finale", "Genuflettiti", "Genuflettiti", "Genuflettiti"), 0);
+
+
+	container.stages[9] = Stage(10, "Epilogo", "Hai sconfitto Mega presidente Trumpinator 9000! O almeno è quello che pensi.\nImprovvisamente si rialza ma tu hai ancora un colpo in canna.\nCosa dici mentre tiri il colpo finale?",
+		ChoicesDefinitions("Nothin personnel kid", "Scendi le scale", "Democracy was a mistake", "Chiedi al maggiordomo"), 0);
 
 	return container;
 }
@@ -118,7 +132,6 @@ bool Game()
 {
 	StagesContainer container = Init();
 
-
 	for (int stage = 0; stage < stagesCount; stage++)
 	{
 
@@ -132,25 +145,20 @@ bool Game()
 			return false;
 		}
 
-
-
 	}
 
-	MaddoLib::OutputLine("Appagante messaggio di vittoria!");
+	MaddoLib::OutputLine("Appagante messaggio di vittoria! \nHai salvato il mondo da qualcosa, adesso puoi chiudere il gioco buonanotte a tutti.");
 	MaddoLib::OutputLine("Fine");
 	return true;
 }
 
 int main()
 {
-
 	bool exit = false;
 
 	while (!exit) {
 
-
 		Game();
-
 
 		exit = MaddoLib::AskYesNo("\nUscire dal programma?");
 	}
