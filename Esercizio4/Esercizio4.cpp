@@ -5,47 +5,11 @@
 #include "stdafx.h"
 #include <iostream>
 #include <string>
+#include "MaddoLib.h"
 
 using namespace std;
+using namespace Maddo;
 
-void Output(string text)
-{
-	cout << text;
-}
-
-void OutputLine(string text)
-{
-	cout << text + "\n";
-}
-
-string Input(string description)
-{
-	string input;
-	Output(description);
-	cin >> input;
-	OutputLine("");
-	return input;
-
-}
-
-inline bool isInteger(const std::string & s)
-{
-	if (s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+'))) return false;
-
-	char * p;
-	strtol(s.c_str(), &p, 10);
-
-	return (*p == 0);
-}
-
-inline int toInt(const std::string & s)
-{
-	char * p;
-
-	return strtol(s.c_str(), &p, 10);
-	// attenzione non c'è controllo qui
-
-}
 
 // uso stringhe perché è più facile concatenarle tra di loro
 string Categorize(int score) {
@@ -77,7 +41,7 @@ bool AskYesNo(string message)
 
 	while (!valid)
 	{
-		Output(message + " (S/N): ");
+		MaddoLib::Output(message + " (S/N): ");
 		cin >> input;
 		if (input[0] == 'S' || input[0] == 'N' || input[0] == 's' || input[0] == 'n') {
 			valid = true;
@@ -106,11 +70,11 @@ string GetDifficulty() {
 	int diff;
 	while (!isValid)
 	{
-		Output("1: Very Easy\n2: Easy\n3: Medium\n4: Hard\n5: Very Hard\n");
-		input = Input("Inserire un numero da 1 a 5 per denotare la difficoltà: ");
-		if (isInteger(input))
+		MaddoLib::Output("1: Very Easy\n2: Easy\n3: Medium\n4: Hard\n5: Very Hard\n");
+		input = MaddoLib::Input("Inserire un numero da 1 a 5 per scegliere la difficoltà: ");
+		if (MaddoLib::isInteger(input))
 		{
-			diff = toInt(input);
+			diff = MaddoLib::toInt(input);
 			switch (diff) {
 			case VeryEasy:
 				input = "Very Easy";
@@ -134,7 +98,7 @@ string GetDifficulty() {
 				isValid = true;
 				break;
 			default:
-				OutputLine("Valore non valido");
+				MaddoLib::OutputLine("Valore non valido");
 			}
 
 		}
@@ -149,12 +113,8 @@ int main()
 	bool exit = false;
 	while (!exit) {
 
-		
-
-		
-
 		string diff = GetDifficulty();
-		OutputLine("La difficoltà selezionata è: " + diff);
+		MaddoLib::OutputLine("La difficoltà selezionata è: " + diff);
 
 		exit = AskYesNo("Uscire dal programma?");
 	}
