@@ -287,10 +287,12 @@ void Game()
 
 	while (isPlaying)
 	{
+		MaddoLib::ClearScreen();
 		OutputBoard();
 
 		if (turn == PLAYER)
 		{
+
 			DoPlayerTurn(playerCharacter);
 			turn = AI;
 		}
